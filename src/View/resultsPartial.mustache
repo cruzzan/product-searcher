@@ -1,9 +1,8 @@
-<div id="resultsContainer">
+<div class="results-container">
     {{#products}}
-        <div>
-            <p>Id: {{id}}</p>
-            <p>Name: {{name}}</p>
-            <p>Category: {{category}}</p>
+        <div class="result-item">
+            <span class="item-title">{{name}}</span>
+            <span class="item-meta">{{id}} - {{category}}</span>
         </div>
     {{/products}}
 </div>
