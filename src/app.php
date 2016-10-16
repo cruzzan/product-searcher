@@ -6,6 +6,7 @@ use Slim\App;
 use Slim\Container;
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
+use ProductSearcher\Model\ProductsDataMapper;
 use Symfony\Component\ClassLoader\Psr4ClassLoader as ClassLoader;
 
 $loader = new ClassLoader();
@@ -23,8 +24,9 @@ $container = new Container(array(
 
 // Set up Slim app
 $app = new App($container);
-
 $container = $app->getContainer();
+
+// Add mustache enginge to container
 $container['mustache'] = function(){
 	$mustache = new Mustache_Engine(array(
 		'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__).'/View')
@@ -32,4 +34,8 @@ $container['mustache'] = function(){
 	return $mustache;
 };
 
+// Add path to the datafile to the container
+$container['dataFile'] = 'data/products.json';
 
+// Add the productDataMapper to the container
+$container['productDataMapper'] = new ProductsDataMapper($container['dataFile']);

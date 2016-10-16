@@ -7,5 +7,5 @@ if(!isset($app)){
 }
 $app->get('/', function ($request, $response, $args) {
 	$controller = new MainController();
-	return $controller->mainViewAction($this->mustache);
+	return $controller->mainViewAction($this->mustache, $this->productDataMapper);
 });

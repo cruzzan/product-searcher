@@ -3,9 +3,10 @@
 namespace ProductSearcher\Controller;
 
 use Mustache_Engine;
+use ProductSearcher\Model\ProductsDataMapper;
 
 class MainController {
-	public function mainViewAction(Mustache_Engine $engine){
-		return $engine->render('main', array());
+	public function mainViewAction(Mustache_Engine $engine, ProductsDataMapper $productsDataMapper){
+		return $engine->render('main', array('products' => $productsDataMapper->findAll()));
 	}
 }
