@@ -5,13 +5,18 @@
 <head>
 
     <title>Product searcher</title>
-
+    <link rel="stylesheet" type="text/css" href="./src/style/css/style.css" />
 </head>
 
 <body>
-    <h1>Product searcher</h1>
-    <p>Testing the XHTML template</p>
-    {{> searchPartial}}
+    <div id="header">
+        <div class="header-wrapper center">
+            <h1>Product searcher</h1>
+            {{> searchPartial}}
+        </div>
+    </div>
+    <div class="header-spacer"></div>
+
 
     {{> resultsPartial}}
 </body>
