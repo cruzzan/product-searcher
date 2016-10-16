@@ -1,0 +1,22 @@
+{
+  "name": "product-searcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cruzzan/product-searcher.git"
+  },
+  "author": "Sebastian Hultstrand",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/cruzzan/product-searcher/issues"
+  },
+  "homepage": "https://github.com/cruzzan/product-searcher#readme",
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
