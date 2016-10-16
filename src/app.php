@@ -5,6 +5,7 @@ namespace ProductSearcher;
 use Slim\App;
 use Slim\Container;
 use Mustache_Engine;
+use Mustache_Loader_FilesystemLoader;
 use Symfony\Component\ClassLoader\Psr4ClassLoader as ClassLoader;
 
 $loader = new ClassLoader();
@@ -25,7 +26,9 @@ $app = new App($container);
 
 $container = $app->getContainer();
 $container['mustache'] = function(){
-	$mustache = new Mustache_Engine();
+	$mustache = new Mustache_Engine(array(
+		'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__).'/View')
+	));
 	return $mustache;
 };
 
