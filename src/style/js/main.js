@@ -1,10 +1,11 @@
 var ProductSearch = (function ($) {
     var $searchField = $('#search'),
+        $searchButton = $('button#search-button'),
         $resultsConatiner = $('div#main'),
 
         bindEvents = function () {
-            $searchField.keyup(function () {
-                var term = $(this).val();
+            $searchButton.click(function () {
+                var term = $searchField.val();
                 filterResults(term);
             });
         },
