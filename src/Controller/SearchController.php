@@ -5,29 +5,23 @@ namespace ProductSearcher\Controller;
 use Mustache_Engine;
 use ProductSearcher\Model\Product;
 use ProductSearcher\Model\ProductsDataMapper;
+use ProductSearcher\Model\ProductsSearchManager;
 
 class SearchController {
 	public function searchAction(Mustache_Engine $engine, ProductsDataMapper $productsDataMapper, $searchTerm){
-		$results = array();
-
-		/** @var Product $item */
-		foreach($productsDataMapper->findAll() as $item){
-			if(strlen($searchTerm) == 0){
-				$results[] = $item->jsonSerialize();
-			}else{
-				if($this->isMatch($item, $searchTerm)){
-					$results[] = $item->jsonSerialize();
-				}
-			}
-		}
-
-		return $engine->render('resultsPartial', array('products' => $results));
+		return $engine->render(
+			'resultsPartial',
+			array(
+				'products' => $this->filterProducts(
+					$productsDataMapper->findAll(),
+					$searchTerm
+				)
+			)
+		);
 	}
 
-	protected function isMatch(Product $product, $stringToMatch){
-		if(stristr($product->getName(), $stringToMatch)){
-			return true;
-		}
-		return false;
+	protected function filterProducts(array $productsList, $searchTerm){
+		$productsSearchManager = new ProductsSearchManager($productsList, $searchTerm);
+		return $productsSearchManager->getResults();
 	}
 }
