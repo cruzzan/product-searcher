@@ -5,4 +5,7 @@
             <span class="item-meta">{{id}} - {{category}}</span>
         </div>
     {{/products}}
+    {{^products}}
+        <div class="no-results">There are no matches for your search.</div>
+    {{/products}}
 </div>
