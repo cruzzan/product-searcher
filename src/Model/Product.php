@@ -73,4 +73,8 @@ class Product implements JsonSerializable{
 			'category' => $this->getCategory()
 		);
 	}
+
+	public function toString(){
+		return $this->getId()." ".$this->getCategory()." ".$this->getName();
+	}
 }
