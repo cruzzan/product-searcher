@@ -3,9 +3,8 @@
 namespace ProductSearcher\Controller;
 
 use Mustache_Engine;
-use ProductSearcher\Model\Product;
 use ProductSearcher\Model\ProductsDataMapper;
-use ProductSearcher\Model\ProductsSearchManager;
+use ProductSearcher\Model\ProductsManager;
 
 class SearchController {
 	public function searchAction(Mustache_Engine $engine, ProductsDataMapper $productsDataMapper, $searchTerm){
@@ -21,7 +20,7 @@ class SearchController {
 	}
 
 	protected function filterProducts(array $productsList, $searchTerm){
-		$productsSearchManager = new ProductsSearchManager($productsList, $searchTerm);
-		return $productsSearchManager->getResults();
+		$productsManager = new ProductsManager($productsList);
+		return $productsManager->searchProducts($searchTerm);
 	}
 }
